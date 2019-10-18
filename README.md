@@ -22,4 +22,5 @@ Será desenvolvido um app de gerenciamento de academia, onde será permitido a a
 - Sucrase + Nodemon;
 - ESLint + Prettier + EditorConfig;
 - Sequelize (Utilize PostgreSQL ou MySQL);
+- Yup
 - JWT
