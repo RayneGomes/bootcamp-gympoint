@@ -5,7 +5,7 @@ module.exports = {
   password: 'root',
   database: 'gympoint',
   define: {
-    timestamp: true,
+    timestamps: true,
     underscored: true,
     underscoredAll: true,
   },
