@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+import EnrolledController from './app/controllers/EnrolledController';
 import PlanController from './app/controllers/PlanController';
 import SessionController from './app/controllers/SessionController';
 import StudentController from './app/controllers/StudentController';
@@ -25,5 +26,7 @@ routes.get('/plans', PlanController.index);
 routes.post('/plans', PlanController.store);
 routes.put('/plans/:id', PlanController.update);
 routes.delete('/plans/:id', PlanController.delete);
+
+routes.get('/enrolleds', EnrolledController.index);
 
 export default routes;
