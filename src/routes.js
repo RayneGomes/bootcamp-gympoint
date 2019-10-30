@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import PlanController from './app/controllers/PlanController';
 import SessionController from './app/controllers/SessionController';
-import StudentController from './app/controllers/StudentControllers';
+import StudentController from './app/controllers/StudentController';
 
 import authMiddleway from './app/middlewares/auth';
 
