@@ -5,6 +5,8 @@ import Enrolled from '../models/Enrolled';
 import Plan from '../models/Plan';
 import Student from '../models/Student';
 
+import sendMail from '../jobs/SubscriptionMail';
+
 class EnrolledController {
   async index(req, res) {
     const { page = 1 } = req.query;
@@ -73,7 +75,7 @@ class EnrolledController {
     const end_date = addMonths(start_date_plan, plan.duration);
     const price = plan.price * plan.duration;
 
-    const enrolled = await Enrolled.create({
+    const enroll = await Enrolled.create({
       student_id,
       plan_id,
       start_date: start_date_plan,
@@ -81,7 +83,25 @@ class EnrolledController {
       price,
     });
 
-    return res.json(enrolled);
+    const newEnrolled = await Enrolled.findOne({
+      where: { id: enroll.id },
+      include: [
+        {
+          model: Plan,
+          as: 'plan',
+          attributes: ['id', 'title', 'price', 'duration'],
+        },
+        {
+          model: Student,
+          as: 'student',
+          attributes: ['id', 'name', 'email'],
+        },
+      ],
+    });
+
+    await sendMail.handle({ data: { enroll: newEnrolled } });
+
+    return res.json(newEnrolled);
   }
 
   async update(req, res) {
