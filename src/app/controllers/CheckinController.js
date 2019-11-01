@@ -55,7 +55,6 @@ class CheckinController {
         .json({ error: 'No active plans found for the student' });
     }
 
-    // TODO: fazer verificacao de numero de logins permitidos na semana
     const daysBefore = subDays(new Date(), 7);
     const limitCheckinWeek = 5;
 
