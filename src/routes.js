@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+import CheckinController from './app/controllers/CheckinController';
 import EnrolledController from './app/controllers/EnrolledController';
 import PlanController from './app/controllers/PlanController';
 import SessionController from './app/controllers/SessionController';
@@ -21,6 +22,9 @@ routes.get('/students', StudentController.index);
 routes.post('/students', StudentController.store);
 routes.put('/students/:id', StudentController.update);
 routes.delete('/students/:id', StudentController.delete);
+
+routes.get('/students/:id/checkins', CheckinController.index);
+routes.post('/students/:id/checkins', CheckinController.store);
 
 routes.get('/plans', PlanController.index);
 routes.post('/plans', PlanController.store);
